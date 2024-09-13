@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "c3cedb12-27c3-400e-b62b-0b8cd4d6e3d5",
+		"name": "Flights",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38022823"
+	},
+	"item": [
+		{
+			"name": "BuscarTodosLosVuelosConEscalas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/flights/allItineraries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flights",
+						"allItineraries"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2024-09-10",
+							"disabled": true
+						},
+						{
+							"key": "endDate",
+							"value": "2024-09-30",
+							"disabled": true
+						},
+						{
+							"key": "maxPrice",
+							"value": "120",
+							"disabled": true
+						},
+						{
+							"key": "destination",
+							"value": "Houston",
+							"disabled": true
+						},
+						{
+							"key": "origin",
+							"value": "Dallas",
+							"disabled": true
+						},
+						{
+							"key": "flightType",
+							"value": "Domestic",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BuscarTodosLosVuelos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/flights",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flights"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BuscarVueloPorID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/flights/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flights",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CrearVuelo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"flightNumber\": \"NY123\",\r\n    \"flightType\": \"International\",\r\n    \"origin\": \"Los Angeles\",\r\n    \"destination\": \"New York\",\r\n    \"departureDate\": \"2024-09-10\",\r\n    \"departureTime\": \"07:00:00\",\r\n    \"arrivalDate\": \"2024-09-10\",\r\n    \"arrivalTime\": \"10:00:00\",\r\n    \"price\": 200.00,\r\n    \"taxPercentage\": 5.0,\r\n    \"surchargePercentage\": 10.0,\r\n    \"airplane\": {\r\n        \"id\": 1\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/flights",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flights"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ActualizarVueloPorID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"flightNumber\": \"NY124\",\r\n    \"flightType\": \"Domestic\",\r\n    \"origin\": \"Los Angeles\",\r\n    \"destination\": \"New York\",\r\n    \"departureDate\": \"2024-09-11\",\r\n    \"departureTime\": \"08:00:00\",\r\n    \"arrivalDate\": \"2024-09-11\",\r\n    \"arrivalTime\": \"11:00:00\",\r\n    \"price\": 210.00,\r\n    \"taxPercentage\": 5.0,\r\n    \"surchargePercentage\": 10.0,\r\n    \"airplane\": {\r\n        \"id\": 2\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/flights/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flights",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BorrarVueloPorID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/flights/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flights",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
