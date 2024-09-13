@@ -26,12 +26,13 @@ public class Flight implements Serializable {
     private double price;
     private double taxPercentage;  // Porcentaje de impuestos
     private double surchargePercentage;  // Sobretasa en porcentaje
+    private String status;
 
     // Constructor vacío
     public Flight() {
     }
 
-    public Flight(Long id, String flightNumber, String flightType, String origin, String destination, Airplane airplane, LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime, LocalTime arrivalTime, double price, double taxPercentage, double surchargePercentage) {
+    public Flight(Long id, String flightNumber, String flightType, String origin, String destination, Airplane airplane, LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime, LocalTime arrivalTime, double price, double taxPercentage, double surchargePercentage, String status) {
         this.id = id;
         this.flightNumber = flightNumber;
         this.flightType = flightType;
@@ -45,9 +46,19 @@ public class Flight implements Serializable {
         this.price = price;
         this.taxPercentage = taxPercentage;
         this.surchargePercentage = surchargePercentage;
+        this.status = status;
     }
 
     // Getters y setters
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Long getId() {
         return id;
