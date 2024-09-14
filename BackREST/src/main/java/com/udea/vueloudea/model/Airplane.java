@@ -1,9 +1,6 @@
 package com.udea.vueloudea.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Airplane {
@@ -12,13 +9,15 @@ public class Airplane {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String airplaneType;
+    @ManyToOne
+    @JoinColumn(name = "airplane_type_id")
+    private AirplaneType airplaneType;
 
     private int maxSeats;
 
     private String seatsDistribution; // "2-4-2", "3-3-3", etc.
 
-    public Airplane(Long id, String airplaneType, int maxSeats, String seatsDistribution) {
+    public Airplane(Long id, AirplaneType airplaneType, int maxSeats, String seatsDistribution) {
         this.id = id;
         this.airplaneType = airplaneType;
         this.maxSeats = maxSeats;
@@ -36,11 +35,11 @@ public class Airplane {
         this.id = id;
     }
 
-    public String getAirplaneType() {
+    public AirplaneType getAirplaneType() {
         return airplaneType;
     }
 
-    public void setAirplaneType(String airplaneType) {
+    public void setAirplaneType(AirplaneType airplaneType) {
         this.airplaneType = airplaneType;
     }
 

@@ -51,8 +51,8 @@ public class FlightItinerary {
 
     public FlightItinerary(List<Flight> flights) {
         this.flights = flights;
-        this.origin = flights.get(0).getOrigin();
-        this.destination = flights.get(flights.size() - 1).getDestination();
+        this.origin = flights.get(0).getOrigin().getIataCode();  // Obtén el código IATA de la ciudad de origen
+        this.destination = flights.get(flights.size() - 1).getDestination().getIataCode();  // Obtén el código IATA de la ciudad de destino
         this.departureDate = flights.get(0).getDepartureDate();
         this.arrivalDate = flights.get(flights.size() - 1).getArrivalDate();
         this.totalDuration = calculateTotalDuration();

@@ -107,7 +107,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"flightNumber\": \"NY123\",\r\n    \"flightType\": \"International\",\r\n    \"origin\": \"Los Angeles\",\r\n    \"destination\": \"New York\",\r\n    \"departureDate\": \"2024-09-10\",\r\n    \"departureTime\": \"07:00:00\",\r\n    \"arrivalDate\": \"2024-09-10\",\r\n    \"arrivalTime\": \"10:00:00\",\r\n    \"price\": 200.00,\r\n    \"taxPercentage\": 5.0,\r\n    \"surchargePercentage\": 10.0,\r\n    \"airplane\": {\r\n        \"id\": 1\r\n    }\r\n}\r\n",
+					"raw": "{\r\n    \"flightNumber\": \"BOG123\",\r\n    \"flightType\": {\r\n        \"id\": 2  // ID del tipo de vuelo (Internacional)\r\n    },\r\n    \"origin\": {\r\n        \"iataCode\": \"BOG\"  // Código IATA de Bogotá\r\n    },\r\n    \"destination\": {\r\n        \"iataCode\": \"JFK\"  // Código IATA de Nueva York\r\n    },\r\n    \"departureDate\": \"2024-09-10\",\r\n    \"departureTime\": \"07:00:00\",\r\n    \"arrivalDate\": \"2024-09-10\",\r\n    \"arrivalTime\": \"10:00:00\",\r\n    \"price\": 200.00,\r\n    \"taxPercentage\": 5.0,\r\n    \"surchargePercentage\": 10.0,\r\n    \"airplane\": {\r\n        \"id\": 1  // ID del avión\r\n    },\r\n    \"status\": {\r\n        \"id\": 1  // ID del estado (Scheduled)\r\n    }\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -136,7 +136,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"flightNumber\": \"NY124\",\r\n    \"flightType\": \"Domestic\",\r\n    \"origin\": \"Los Angeles\",\r\n    \"destination\": \"New York\",\r\n    \"departureDate\": \"2024-09-11\",\r\n    \"departureTime\": \"08:00:00\",\r\n    \"arrivalDate\": \"2024-09-11\",\r\n    \"arrivalTime\": \"11:00:00\",\r\n    \"price\": 210.00,\r\n    \"taxPercentage\": 5.0,\r\n    \"surchargePercentage\": 10.0,\r\n    \"airplane\": {\r\n        \"id\": 2\r\n    }\r\n}\r\n",
+					"raw": "{\r\n    \"flightNumber\": \"ADZ124\",\r\n    \"flightType\": {\r\n        \"id\": 1  // ID del tipo de vuelo (Nacional)\r\n    },\r\n    \"origin\": {\r\n        \"iataCode\": \"CTG\"  // Código IATA de Los Angeles\r\n    },\r\n    \"destination\": {\r\n        \"iataCode\": \"ADZ\"  // Código IATA de Nueva York\r\n    },\r\n    \"departureDate\": \"2024-09-11\",\r\n    \"departureTime\": \"08:00:00\",\r\n    \"arrivalDate\": \"2024-09-11\",\r\n    \"arrivalTime\": \"11:00:00\",\r\n    \"price\": 210.00,\r\n    \"taxPercentage\": 5.0,\r\n    \"surchargePercentage\": 10.0,\r\n    \"airplane\": {\r\n        \"id\": 1  // ID del avión\r\n    },\r\n    \"status\": {\r\n        \"id\": 1  // ID del estado (Scheduled)\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

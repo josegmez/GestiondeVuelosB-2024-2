@@ -1,49 +1,67 @@
+INSERT INTO FLIGHT_TYPE (id, name) VALUES (1, 'Nacional'), (2, 'Internacional');
+
+INSERT INTO Status (id, status_name) VALUES 
+(1, 'Scheduled'), 
+(2, 'Completed'), 
+(3, 'Cancelled');
+
+INSERT INTO AIRPLANE_TYPE  (id, name) VALUES 
+(1, 'Boeing 737'),
+(2, 'Airbus A320'),
+(3, 'Boeing 777'),
+(4, 'Airbus A380');
+
 -- Insertar aviones en la tabla AIRPLANE
-INSERT INTO AIRPLANE (AIRPLANE_TYPE, MAX_SEATS, SEATS_DISTRIBUTION)
+INSERT INTO AIRPLANE (AIRPLANE_TYPE_ID, MAX_SEATS, SEATS_DISTRIBUTION)
 VALUES 
-('Boeing 737', 180, '3-3'), 
-('Airbus A320', 150, '3-3'), 
-('Embraer 190', 100, '2-2'),
-('Boeing 777', 350, '3-4-3'),
-('Airbus A380', 500, '3-4-3'),
-('Bombardier CRJ-900', 90, '2-2'),
-('Boeing 787 Dreamliner', 240, '3-3-3'),
-('Airbus A330', 250, '2-4-2'),
-('Cessna 172', 4, '1-1');
+(1, 180, '3-3'), 
+(1, 150, '3-3'), 
+(2, 100, '2-2'),
+(3, 350, '3-4-3'),
+(4, 500, '3-4-3'),
+(4, 90, '2-2'),
+(3, 240, '3-3-3'),
+(2, 250, '2-4-2'),
+(4, 4, '1-1');
 
 
-INSERT INTO FLIGHT (ARRIVAL_DATE, ARRIVAL_TIME, DEPARTURE_DATE, DEPARTURE_TIME, PRICE, SURCHARGE_PERCENTAGE, TAX_PERCENTAGE, ID, AIRPLANE_ID, DESTINATION, FLIGHT_NUMBER, FLIGHT_TYPE, ORIGIN, STATUS)
-VALUES 
-('2024-09-10', '10:00:00', '2024-09-10', '07:00:00', 200.00, 10.0, 5.0, 1, 1, 'New York', 'NY123', 'International', 'Los Angeles', 'Scheduled'),
-('2024-09-10', '15:00:00', '2024-09-10', '12:00:00', 180.00, 10.0, 5.0, 2, 2, 'Miami', 'LA123', 'Domestic', 'New York', 'Scheduled'),
-('2024-09-10', '20:00:00', '2024-09-10', '17:00:00', 160.00, 10.0, 5.0, 3, 3, 'San Francisco', 'SF123', 'Domestic', 'New York', 'Scheduled');
+INSERT INTO City (IATA_CODE , AIRPORT_NAME , COUNTRY ) VALUES 
+('BOG', 'Aeropuerto Internacional El Dorado - Bogotá', 'Colombia'),
+('MDE', 'Aeropuerto Internacional José María Córdova - Rionegro (Medellín)', 'Colombia'),
+('CTG', 'Aeropuerto Internacional Rafael Núñez - Cartagena', 'Colombia'),
+('ADZ', 'Aeropuerto Internacional Gustavo Rojas Pinilla - San Andrés', 'Colombia'),
+('AXM', 'Aeropuerto Internacional El Edén - Armenia', 'Colombia'),
+('CLO', 'Aeropuerto Internacional Alfonso Bonilla Aragón - Cali', 'Colombia'),
+('CUC', 'Aeropuerto Internacional Camilo Daza - Cúcuta', 'Colombia'),
+('BAQ', 'Aeropuerto Internacional Ernesto Cortissoz - Barranquilla', 'Colombia'),
+('PEI', 'Aeropuerto Internacional Matecaña - Pereira', 'Colombia'),
+('SMR', 'Aeropuerto Internacional Simón Bolívar - Santa Marta', 'Colombia'),
+('JFK', 'Aeropuerto Internacional John F. Kennedy - Nueva York', 'Estados Unidos'),
+('LHR', 'Aeropuerto de Heathrow - Londres', 'Reino Unido'),
+('CDG', 'Aeropuerto Charles de Gaulle - París', 'Francia'),
+('SYD', 'Aeropuerto Kingsford Smith - Sídney', 'Australia'),
+('HND', 'Aeropuerto Internacional de Haneda - Tokio', 'Japón'),
+('DXB', 'Aeropuerto Internacional de Dubái - Dubái', 'Emiratos Árabes Unidos'),
+('SIN', 'Aeropuerto de Changi - Singapur', 'Singapur'),
+('CAN', 'Aeropuerto Internacional de Cantón-Baiyun - Cantón', 'China'),
+('MEX', 'Aeropuerto Internacional Benito Juárez - Ciudad de México', 'México'),
+('IST', 'Aeropuerto Internacional de Estambul - Estambul', 'Turquía');
 
--- Primer vuelo: Los Angeles a Nueva York
-INSERT INTO FLIGHT (ARRIVAL_DATE, ARRIVAL_TIME, DEPARTURE_DATE, DEPARTURE_TIME, PRICE, SURCHARGE_PERCENTAGE, TAX_PERCENTAGE, ID, AIRPLANE_ID, DESTINATION, FLIGHT_NUMBER, FLIGHT_TYPE, ORIGIN, STATUS)
-VALUES 
-('2024-09-10', '12:00:00', '2024-09-10', '08:00:00', 300.00, 12.0, 8.0, 4, 4, 'New York', 'LA-NY001', 'International', 'Los Angeles', 'Scheduled');
 
--- Segundo vuelo: Nueva York a Miami (Escala de 2 horas)
-INSERT INTO FLIGHT (ARRIVAL_DATE, ARRIVAL_TIME, DEPARTURE_DATE, DEPARTURE_TIME, PRICE, SURCHARGE_PERCENTAGE, TAX_PERCENTAGE, ID, AIRPLANE_ID, DESTINATION, FLIGHT_NUMBER, FLIGHT_TYPE, ORIGIN, STATUS)
+-- Vuelos nacionales
+INSERT INTO FLIGHT (ARRIVAL_DATE, ARRIVAL_TIME, DEPARTURE_DATE, DEPARTURE_TIME, PRICE, SURCHARGE_PERCENTAGE, TAX_PERCENTAGE, AIRPLANE_ID, DESTINATION_IATA, FLIGHT_NUMBER, FLIGHT_TYPE_ID, ORIGIN_IATA, STATUS_ID)
 VALUES 
-('2024-09-10', '16:00:00', '2024-09-10', '14:00:00', 200.00, 10.0, 5.0, 5, 5, 'Miami', 'NY-MIA001', 'Domestic', 'New York', 'Scheduled');
+('2024-09-10', '10:00:00', '2024-09-10', '07:00:00', 200.00, 10.0, 5.0, 1, 'BOG', 'BOG001', 1, 'MDE', 1),
+('2024-09-10', '15:00:00', '2024-09-10', '12:00:00', 180.00, 10.0, 5.0, 2, 'CTG', 'CTG001', 1, 'BOG', 1),
+('2024-09-10', '20:00:00', '2024-09-10', '17:00:00', 160.00, 10.0, 5.0, 3, 'CLO', 'CLO001', 1, 'MDE', 1),
+('2024-09-11', '11:00:00', '2024-09-11', '08:00:00', 250.00, 10.0, 5.0, 4, 'PEI', 'PEI001', 1, 'CTG', 1),
+('2024-09-11', '17:00:00', '2024-09-11', '14:00:00', 220.00, 8.0, 4.0, 5, 'SMR', 'SMR001', 1, 'PEI', 1);
 
--- Primer vuelo: San Francisco a Denver
-INSERT INTO FLIGHT (ARRIVAL_DATE, ARRIVAL_TIME, DEPARTURE_DATE, DEPARTURE_TIME, PRICE, SURCHARGE_PERCENTAGE, TAX_PERCENTAGE, ID, AIRPLANE_ID, DESTINATION, FLIGHT_NUMBER, FLIGHT_TYPE, ORIGIN, STATUS)
+-- Vuelos internacionales
+INSERT INTO FLIGHT (ARRIVAL_DATE, ARRIVAL_TIME, DEPARTURE_DATE, DEPARTURE_TIME, PRICE, SURCHARGE_PERCENTAGE, TAX_PERCENTAGE, AIRPLANE_ID, DESTINATION_IATA, FLIGHT_NUMBER, FLIGHT_TYPE_ID, ORIGIN_IATA, STATUS_ID)
 VALUES 
-('2024-09-11', '11:00:00', '2024-09-11', '08:00:00', 250.00, 10.0, 5.0, 6, 6, 'Denver', 'SF-DEN001', 'Domestic', 'San Francisco', 'Scheduled');
+('2024-09-12', '12:00:00', '2024-09-12', '08:00:00', 300.00, 12.0, 8.0, 6, 'JFK', 'BOG-JFK001', 2, 'BOG', 1),
+('2024-09-13', '16:00:00', '2024-09-13', '12:00:00', 450.00, 15.0, 10.0, 7, 'LHR', 'BOG-LHR001', 2, 'BOG', 1),
+('2024-09-14', '20:00:00', '2024-09-14', '15:00:00', 600.00, 18.0, 12.0, 8, 'CDG', 'BOG-CDG001', 2, 'MDE', 1),
+('2024-09-15', '22:00:00', '2024-09-15', '18:00:00', 700.00, 20.0, 15.0, 9, 'DXB', 'BOG-DXB001', 2, 'CLO', 1);
 
--- Segundo vuelo: Denver a Chicago (Escala de 3 horas)
-INSERT INTO FLIGHT (ARRIVAL_DATE, ARRIVAL_TIME, DEPARTURE_DATE, DEPARTURE_TIME, PRICE, SURCHARGE_PERCENTAGE, TAX_PERCENTAGE, ID, AIRPLANE_ID, DESTINATION, FLIGHT_NUMBER, FLIGHT_TYPE, ORIGIN, STATUS)
-VALUES 
-('2024-09-11', '17:00:00', '2024-09-11', '14:00:00', 220.00, 8.0, 4.0, 7, 7, 'Chicago', 'DEN-CHI001', 'Domestic', 'Denver', 'Scheduled');
-
--- Primer vuelo: Miami a Washington
-INSERT INTO FLIGHT (ARRIVAL_DATE, ARRIVAL_TIME, DEPARTURE_DATE, DEPARTURE_TIME, PRICE, SURCHARGE_PERCENTAGE, TAX_PERCENTAGE, ID, AIRPLANE_ID, DESTINATION, FLIGHT_NUMBER, FLIGHT_TYPE, ORIGIN, STATUS)
-VALUES 
-('2024-09-12', '13:00:00', '2024-09-12', '10:00:00', 220.00, 9.0, 6.0, 8, 8, 'Washington', 'MIA-WAS001', 'Domestic', 'Miami', 'Scheduled');
-
--- Segundo vuelo: Washington a Boston (Escala de 2 horas)
-INSERT INTO FLIGHT (ARRIVAL_DATE, ARRIVAL_TIME, DEPARTURE_DATE, DEPARTURE_TIME, PRICE, SURCHARGE_PERCENTAGE, TAX_PERCENTAGE, ID, AIRPLANE_ID, DESTINATION, FLIGHT_NUMBER, FLIGHT_TYPE, ORIGIN, STATUS)
-VALUES 
-('2024-09-12', '18:00:00', '2024-09-12', '15:00:00', 180.00, 7.0, 3.0, 9, 9, 'Boston', 'WAS-BOS001', 'Domestic', 'Washington', 'Scheduled');
