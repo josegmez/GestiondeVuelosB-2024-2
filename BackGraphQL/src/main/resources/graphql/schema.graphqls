@@ -1,0 +1,97 @@
+# Definición de tipos
+type Query {
+    # Consultas para obtener información
+    getAllAirplaneTypes: [AirplaneType!]!
+    getAirplaneTypeById(id: ID!): AirplaneType
+
+    getAllFlights: [Flight!]!
+    getFlightById(id: ID!): Flight
+}
+
+type Mutation {
+    # Mutaciones para crear, actualizar y eliminar
+
+    createFlight(
+        flightNumber: String!,
+        originIata: String!,
+        destinationIata: String!,
+        price: Float!,
+        taxPercentage: Float!,
+        surchargePercentage: Float!,
+        flightTypeId: ID!,
+        airplaneTypeId: ID!,
+        statusId: ID!
+    ): Flight!
+
+     updateFlight(
+            id: ID!,
+            flightNumber: String!,
+            originIata: String!,
+            destinationIata: String!,
+            price: Float!,
+            taxPercentage: Float!,
+            surchargePercentage: Float!,
+            flightTypeId: ID!,
+            airplaneTypeId: ID!,
+            statusId: ID!
+        ): Flight!
+
+    deleteFlight(id: ID!): Boolean!
+
+    createAirplaneType(
+            typeId: ID!,
+            maxSeats: Int!,
+            seatsDistribution: String!
+        ): AirplaneType!
+
+    updateAirplaneType(
+            id: ID!,
+            typeId: ID!,  # Solo necesitas el ID del tipo existente
+            maxSeats: Int!,
+            seatsDistribution: String!
+        ): AirplaneType!
+
+    deleteAirplaneType(id: ID!): Boolean!
+}
+
+# Definición de tipos
+type City {
+    iataCode: String!
+    airportName: String!
+    country: String!
+}
+
+type Flight {
+    id: ID!
+    flightNumber: String!
+    origin: City!
+    destination: City!
+    price: Float!
+    taxPercentage: Float!
+    surchargePercentage: Float!
+    flightType: FlightType!
+    airplaneType: AirplaneType!
+    status: Status!
+}
+
+type FlightType {
+    id: ID!
+    name: String!  # "Nacional" o "Internacional"
+}
+
+type AirplaneType {
+    id: ID!
+    type: Type!  # Tipo de avión
+    maxSeats: Int!
+    seatsDistribution: String!  # Ejemplo "2-4-2", "3-3-3"
+}
+
+type Type {
+    id: ID!
+    name: String!  # Nombre del tipo (ej. "Nacional", "Internacional")
+}
+
+type Status {
+    id: ID!
+    statusName: String!  # Ejemplo "Scheduled", "Completed", "Cancelled"
+}

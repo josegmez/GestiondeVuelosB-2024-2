@@ -61,20 +61,28 @@ public class Flight implements Serializable {
         this.surchargePercentage = surchargePercentage;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFlightNumber() {
+        return flightNumber;
+    }
+
+    public void setFlightNumber(String flightNumber) {
+        this.flightNumber = flightNumber;
+    }
+
     public FlightType getFlightType() {
         return flightType;
     }
 
     public void setFlightType(FlightType flightType) {
         this.flightType = flightType;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
     }
 
     public City getOrigin() {
@@ -93,28 +101,20 @@ public class Flight implements Serializable {
         this.destination = destination;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFlightNumber() {
-        return flightNumber;
-    }
-
-    public void setFlightNumber(String flightNumber) {
-        this.flightNumber = flightNumber;
-    }
-
-    public AirplaneType getAirplane() {
+    public AirplaneType getAirplaneType() {
         return airplaneType;
     }
 
-    public void setAirplane(AirplaneType airplaneType) {
+    public void setAirplaneType(AirplaneType airplaneType) {
         this.airplaneType = airplaneType;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public LocalDate getDepartureDate() {

@@ -3,7 +3,7 @@ package com.udea.vueloudea.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.udea.vueloudea.model.Airplane;
+import com.udea.vueloudea.model.AirplaneType;
 import com.udea.vueloudea.service.AirplaneService;
 
 import java.util.List;
@@ -17,26 +17,26 @@ public class AirplaneController {
     private AirplaneService airplaneService;
 
     @GetMapping
-    public List<Airplane> getAllAirplanes() {
+    public List<AirplaneType> getAllAirplanes() {
         return airplaneService.getAllAirplanes();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Airplane> getAirplaneById(@PathVariable Long id) {
-        Optional<Airplane> airplane = airplaneService.getAirplaneById(id);
+    public ResponseEntity<AirplaneType> getAirplaneById(@PathVariable Long id) {
+        Optional<AirplaneType> airplane = airplaneService.getAirplaneById(id);
         return airplane.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Airplane createAirplane(@RequestBody Airplane airplane) {
-        return airplaneService.createOrUpdateAirplane(airplane);
+    public AirplaneType createAirplane(@RequestBody AirplaneType airplaneType) {
+        return airplaneService.createOrUpdateAirplane(airplaneType);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Airplane> updateAirplane(@PathVariable Long id, @RequestBody Airplane airplane) {
+    public ResponseEntity<AirplaneType> updateAirplane(@PathVariable Long id, @RequestBody AirplaneType airplaneType) {
         if (airplaneService.getAirplaneById(id).isPresent()) {
-            airplane.setId(id);
-            return ResponseEntity.ok(airplaneService.createOrUpdateAirplane(airplane));
+            airplaneType.setId(id);
+            return ResponseEntity.ok(airplaneService.createOrUpdateAirplane(airplaneType));
         } else {
             return ResponseEntity.notFound().build();
         }
