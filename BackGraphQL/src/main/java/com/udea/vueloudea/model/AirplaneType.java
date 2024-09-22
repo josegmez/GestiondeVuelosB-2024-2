@@ -3,28 +3,28 @@ package com.udea.vueloudea.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Airplane {
+public class AirplaneType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "airplane_type_id")
-    private AirplaneType airplaneType;
+    @JoinColumn(name = "type_id")
+    private Type type;
 
     private int maxSeats;
 
     private String seatsDistribution; // "2-4-2", "3-3-3", etc.
 
-    public Airplane(Long id, AirplaneType airplaneType, int maxSeats, String seatsDistribution) {
+    public AirplaneType(Long id, Type type, int maxSeats, String seatsDistribution) {
         this.id = id;
-        this.airplaneType = airplaneType;
+        this.type = type;
         this.maxSeats = maxSeats;
         this.seatsDistribution = seatsDistribution;
     }
 
-    public Airplane() {
+    public AirplaneType() {
     }
 
     public Long getId() {
@@ -35,12 +35,12 @@ public class Airplane {
         this.id = id;
     }
 
-    public AirplaneType getAirplaneType() {
-        return airplaneType;
+    public Type getType() {
+        return type;
     }
 
-    public void setAirplaneType(AirplaneType airplaneType) {
-        this.airplaneType = airplaneType;
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public int getMaxSeats() {

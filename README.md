@@ -76,3 +76,8 @@ Estas colecciones te permitirán realizar operaciones de creación, consulta, ac
 4. Ejecuta el proyecto utilizando Spring Boot. Esto iniciará el servidor en el puerto `8080`.
 5. Accede a la base de datos H2 en la URL indicada y ejecuta las consultas de inserción para poblar la base de datos con datos iniciales.
 6. Usa Postman para probar las funcionalidades con las colecciones importadas.
+
+## Integración a GraphQL
+
+- **URL de la Consola de GraphQL:** [localhost:8080/graphql](http://localhost:8080/graphql)
+- Se recomienda utilizar Postman en lugar de la consola para facilidad de uso de Querys y Mutations

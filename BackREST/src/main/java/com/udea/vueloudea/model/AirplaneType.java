@@ -1,22 +1,30 @@
 package com.udea.vueloudea.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 @Entity
 public class AirplaneType {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-        private String name;
 
-    public AirplaneType() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    private Type type;
+
+    private int maxSeats;
+
+    private String seatsDistribution; // "2-4-2", "3-3-3", etc.
+
+    public AirplaneType(Long id, Type type, int maxSeats, String seatsDistribution) {
+        this.id = id;
+        this.type = type;
+        this.maxSeats = maxSeats;
+        this.seatsDistribution = seatsDistribution;
     }
 
-    public AirplaneType(Long id, String name) {
-        this.id = id;
-        this.name = name;
+    public AirplaneType() {
     }
 
     public Long getId() {
@@ -27,11 +35,27 @@ public class AirplaneType {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Type getAirplaneType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAirplaneType(Type type) {
+        this.type = type;
+    }
+
+    public int getMaxSeats() {
+        return maxSeats;
+    }
+
+    public void setMaxSeats(int maxSeats) {
+        this.maxSeats = maxSeats;
+    }
+
+    public String getSeatsDistribution() {
+        return seatsDistribution;
+    }
+
+    public void setSeatsDistribution(String seatsDistribution) {
+        this.seatsDistribution = seatsDistribution;
     }
 }
