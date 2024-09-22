@@ -17,53 +17,28 @@ public class AirplaneTypeMutationController {
     @Autowired
     private TypeService typeService;
 
-    // Método para crear un nuevo tipo de avión
     @MutationMapping
-    public AirplaneType createAirplaneType(
-            @Argument Long typeId,  // Solo necesitas el ID del tipo existente
-            @Argument int maxSeats,
-            @Argument String seatsDistribution) {
-
-        // Recuperar el objeto Type existente desde la base de datos
-        Type existingType = typeService.getTypeById(typeId); // Asegúrate de tener este servicio
-
-        // Crear una nueva instancia de AirplaneType
+    public AirplaneType createAirplaneType(@Argument Long typeId, @Argument int maxSeats, @Argument String seatsDistribution) {
+        Type existingType = typeService.getTypeById(typeId);
         AirplaneType airplaneType = new AirplaneType();
-        airplaneType.setType(existingType); // Asigna el objeto Type recuperado
-
+        airplaneType.setType(existingType);
         airplaneType.setMaxSeats(maxSeats);
         airplaneType.setSeatsDistribution(seatsDistribution);
-
         return airplaneTypeService.createOrUpdateAirplaneType(airplaneType);
     }
 
-    // Método para actualizar un tipo de avión existente
     @MutationMapping
-    public AirplaneType updateAirplaneType(
-            @Argument Long id,  // ID del tipo de avión a actualizar
-            @Argument Long typeId,  // ID del tipo (referencia existente)
-            @Argument int maxSeats,
-            @Argument String seatsDistribution) {
-        // Recupero el tipo de Avión
-        Type existingType = typeService.getTypeById(typeId);
-
-        // Buscar el tipo de avión existente por ID
+    public AirplaneType updateAirplaneType(@Argument Long id, @Argument Long typeId, @Argument Integer maxSeats, @Argument String seatsDistribution) {
         AirplaneType existingAirplaneType = airplaneTypeService.getAirplaneTypeById(id);
-
-        // Actualizar los campos del tipo de avión
-        existingAirplaneType.setType(existingType); // Recuperar el tipo existente si es necesario
-
-        existingAirplaneType.setMaxSeats(maxSeats);
-        existingAirplaneType.setSeatsDistribution(seatsDistribution);
-
-        // Guardar el tipo de avión actualizado usando el servicio correspondiente
+        if (typeId != null) existingAirplaneType.setType(typeService.getTypeById(typeId));
+        if (maxSeats != null) existingAirplaneType.setMaxSeats(maxSeats);
+        if (seatsDistribution != null) existingAirplaneType.setSeatsDistribution(seatsDistribution);
         return airplaneTypeService.createOrUpdateAirplaneType(existingAirplaneType);
     }
 
-    // Método para eliminar un tipo de avión por su ID
     @MutationMapping
     public boolean deleteAirplaneType(@Argument Long id) {
         airplaneTypeService.deleteAirplaneType(id);
-        return true; // Retorna true si la eliminación fue exitosa
+        return true;
     }
 }
