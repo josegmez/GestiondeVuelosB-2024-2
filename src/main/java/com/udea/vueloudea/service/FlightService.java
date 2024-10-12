@@ -4,10 +4,13 @@ import com.udea.vueloudea.model.Flight;
 import com.udea.vueloudea.model.FlightItinerary;
 import com.udea.vueloudea.repository.IFlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.util.*;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 public class FlightService {
@@ -60,12 +63,26 @@ public class FlightService {
     }
 
     // Crear o actualizar un vuelo
-    public Flight createOrUpdateFlight(Flight flight) {
-        return flightRepository.save(flight);
+    public Flight updateFlight(Flight flight) {
+        try {
+            return flightRepository.save(flight);
+        } catch (DataIntegrityViolationException e) {
+            throw new IllegalArgumentException("Flight number already exists");
+        }
+    }
+
+    public Flight createFlight(Flight flight) {
+        try {
+            return flightRepository.save(flight);
+        } catch (DataIntegrityViolationException e) {
+            throw new IllegalArgumentException("Flight number already exists");
+        }
     }
 
     // Eliminar un vuelo
-    public void deleteFlight(Long id) {
+    public void deleteFlight(Long id){
         flightRepository.deleteById(id);
     }
+
+
 }

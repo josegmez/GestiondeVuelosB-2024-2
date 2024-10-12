@@ -2,6 +2,9 @@ package com.udea.vueloudea.controller;
 
 import com.udea.vueloudea.model.Flight;
 import com.udea.vueloudea.service.FlightService;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -18,7 +21,7 @@ public class FlightController {
     private FlightService flightService;
 
     @QueryMapping
-    public Optional<Flight> getFlightById(@Argument Long id) {
+    public Optional<Flight> getFlightById(@Argument @Positive @NotNull @NotBlank Long id) {
         return flightService.getFlightById(id);
     }
 

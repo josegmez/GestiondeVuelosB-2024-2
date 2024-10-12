@@ -2,6 +2,9 @@ package com.udea.vueloudea.controller;
 
 import com.udea.vueloudea.model.*;
 import com.udea.vueloudea.service.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -26,19 +29,19 @@ public class FlightMutationController {
     private StatusService statusService;
 
     @MutationMapping
-    public Flight createFlight(@Argument String flightNumber,
-                               @Argument String originIata,
-                               @Argument String destinationIata,
-                               @Argument double price,
-                               @Argument double taxPercentage,
-                               @Argument double surchargePercentage,
-                               @Argument Long flightTypeId,
-                               @Argument Long airplaneTypeId,
-                               @Argument String departureDate,
-                               @Argument String arrivalDate,
-                               @Argument String departureTime,
-                               @Argument String arrivalTime,
-                               @Argument Long statusId) {
+    public Flight createFlight(@Argument @NotBlank @NotNull String flightNumber,
+                               @Argument @NotBlank @NotNull String originIata,
+                               @Argument @NotBlank @NotNull String destinationIata,
+                               @Argument @NotBlank @NotNull @Positive double price,
+                               @Argument @NotBlank @NotNull @Positive double taxPercentage,
+                               @Argument @NotBlank @NotNull @Positive double surchargePercentage,
+                               @Argument @NotBlank @NotNull @Positive Long flightTypeId,
+                               @Argument @NotBlank @NotNull String airplaneTypeId,
+                               @Argument @NotBlank @NotNull String departureDate,
+                               @Argument @NotBlank @NotNull String arrivalDate,
+                               @Argument @NotBlank @NotNull String departureTime,
+                               @Argument @NotBlank @NotNull String arrivalTime,
+                               @Argument @NotBlank @NotNull Long statusId) {
 
         Flight flight = new Flight();
         flight.setFlightNumber(flightNumber);
@@ -55,31 +58,32 @@ public class FlightMutationController {
         flight.setAirplaneType(airplaneTypeService.getAirplaneTypeById(airplaneTypeId));
         flight.setStatus(statusService.getStatusById(statusId));
 
-        return flightService.createOrUpdateFlight(flight);
+        return flightService.createFlight(flight);
     }
 
     @MutationMapping
-    public Flight updateFlight(@Argument Long id,
+    public Flight updateFlight(@Argument @NotBlank @NotNull @Positive Long id,
                                @Argument String flightNumber,
                                @Argument String originIata,
                                @Argument String destinationIata,
-                               @Argument Double price,
-                               @Argument Double taxPercentage,
-                               @Argument Double surchargePercentage,
-                               @Argument Long flightTypeId,
-                               @Argument Long airplaneTypeId,
+                               @Argument @Positive Double price,
+                               @Argument @Positive Double taxPercentage,
+                               @Argument @Positive Double surchargePercentage,
+                               @Argument @Positive Long flightTypeId,
+                               @Argument String airplaneTypeId,
                                @Argument String departureDate,
                                @Argument String arrivalDate,
                                @Argument String departureTime,
                                @Argument String arrivalTime,
-                               @Argument Long statusId) {
+                               @Argument @Positive Long statusId) {
 
+        id = Long.valueOf(sanitize(id.toString()));
         Optional<Flight> existingFlightOpt = flightService.getFlightById(id);
         if (existingFlightOpt.isPresent()) {
             Flight existingFlight = existingFlightOpt.get();
-            if (flightNumber != null) existingFlight.setFlightNumber(flightNumber);
-            if (originIata != null) existingFlight.setOrigin(cityService.getCityByIataCode(originIata));
-            if (destinationIata != null) existingFlight.setDestination(cityService.getCityByIataCode(destinationIata));
+            if (flightNumber != null) existingFlight.setFlightNumber(sanitize(flightNumber));
+            if (originIata != null) existingFlight.setOrigin(cityService.getCityByIataCode(sanitize(originIata)));
+            if (destinationIata != null) existingFlight.setDestination(cityService.getCityByIataCode(sanitize(destinationIata)));
             if (price != null) existingFlight.setPrice(price);
             if (taxPercentage != null) existingFlight.setTaxPercentage(taxPercentage);
             if (surchargePercentage != null) existingFlight.setSurchargePercentage(surchargePercentage);
@@ -88,18 +92,22 @@ public class FlightMutationController {
             if (departureTime != null) existingFlight.setDepartureTime(LocalTime.parse(departureTime));
             if (arrivalTime != null) existingFlight.setArrivalTime(LocalTime.parse(arrivalTime));
             if (flightTypeId != null) existingFlight.setFlightType(flightTypeService.getFlightTypeById(flightTypeId));
-            if (airplaneTypeId != null) existingFlight.setAirplaneType(airplaneTypeService.getAirplaneTypeById(airplaneTypeId));
+            if (airplaneTypeId != null) existingFlight.setAirplaneType(airplaneTypeService.getAirplaneTypeById(sanitize(airplaneTypeId)));
             if (statusId != null) existingFlight.setStatus(statusService.getStatusById(statusId));
 
-            return flightService.createOrUpdateFlight(existingFlight);
+            return flightService.updateFlight(existingFlight);
         } else {
             throw new RuntimeException("Flight not found with id: " + id);
         }
     }
 
     @MutationMapping
-    public boolean deleteFlight(@Argument Long id) {
+    public boolean deleteFlight(@Argument @NotBlank @NotNull @Positive Long id) {
         flightService.deleteFlight(id);
         return true;
+    }
+
+    private String sanitize(String input) {
+        return input.replaceAll("[^a-zA-Z0-9]", "");
     }
 }

@@ -3,11 +3,12 @@ package com.udea.vueloudea.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "airplane_type", uniqueConstraints = {@UniqueConstraint(columnNames = "id")})
 public class AirplaneType {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(unique = true, nullable = false)
+    private String id;
 
     @ManyToOne
     @JoinColumn(name = "type_id")
@@ -17,7 +18,7 @@ public class AirplaneType {
 
     private String seatsDistribution; // "2-4-2", "3-3-3", etc.
 
-    public AirplaneType(Long id, Type type, int maxSeats, String seatsDistribution) {
+    public AirplaneType(String id, Type type, int maxSeats, String seatsDistribution) {
         this.id = id;
         this.type = type;
         this.maxSeats = maxSeats;
@@ -27,11 +28,11 @@ public class AirplaneType {
     public AirplaneType() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

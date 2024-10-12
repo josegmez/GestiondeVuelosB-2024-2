@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import com.udea.vueloudea.model.AirplaneType;
 
 @Repository
-public interface IAirplaneTypeRepository extends JpaRepository<AirplaneType, Long> {
+public interface IAirplaneTypeRepository extends JpaRepository<AirplaneType, String> {
 }
