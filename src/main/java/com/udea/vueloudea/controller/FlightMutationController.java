@@ -30,16 +30,16 @@ public class FlightMutationController {
     public Flight createFlight(@Argument @NotBlank @NotNull String flightNumber,
                                @Argument @NotBlank @NotNull String originIata,
                                @Argument @NotBlank @NotNull String destinationIata,
-                               @Argument @NotBlank @NotNull @Positive double price,
-                               @Argument @NotBlank @NotNull @Positive double taxPercentage,
-                               @Argument @NotBlank @NotNull @Positive double surchargePercentage,
-                               @Argument @NotBlank @NotNull @Positive Long flightTypeId,
+                               @Argument @NotNull @Positive double price,
+                               @Argument @NotNull @Positive double taxPercentage,
+                               @Argument @NotNull @Positive double surchargePercentage,
+                               @Argument @NotNull @Positive Long flightTypeId,
                                @Argument @NotBlank @NotNull String airplaneTypeId,
                                @Argument @NotBlank @NotNull String departureDate,
                                @Argument @NotBlank @NotNull String arrivalDate,
                                @Argument @NotBlank @NotNull String departureTime,
                                @Argument @NotBlank @NotNull String arrivalTime,
-                               @Argument @NotBlank @NotNull Long statusId) {
+                               @Argument @NotNull Long statusId) {
 
         Flight flight = new Flight();
         flight.setFlightNumber(flightNumber);
