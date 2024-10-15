@@ -50,6 +50,12 @@ type FlightType {
     name: String!
 }
 
+type AirplaneFamily {
+    # Unique identifier for the airplane family
+    id: ID!
+    name: String!
+}
+
 # Type definition for AirplaneType
 type AirplaneType {
     # Unique identifier for the airplane type
@@ -89,6 +95,8 @@ type Query {
     getAllFlights: [Flight!]!
     # Fetch a flight by its ID
     getFlightById(id: ID!): Flight
+    # Fetch all airplane families
+    getAllFamilies: [AirplaneFamily]
 }
 
 # Mutation type for creating, updating, and deleting data

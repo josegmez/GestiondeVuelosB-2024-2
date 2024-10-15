@@ -58,8 +58,8 @@ public class FlightService {
     }
 
     // Retornar un vuelo por su ID
-    public Optional<Flight> getFlightById(Long id) {
-        return flightRepository.findById(id);
+    public Flight getFlightById(Long id) {
+        return flightRepository.findById(id).orElse(null);
     }
 
     // Crear o actualizar un vuelo

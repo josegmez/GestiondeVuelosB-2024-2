@@ -8,7 +8,6 @@ import jakarta.validation.constraints.Positive;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -21,7 +20,7 @@ public class FlightController {
     private FlightService flightService;
 
     @QueryMapping
-    public Optional<Flight> getFlightById(@Argument @Positive @NotNull @NotBlank Long id) {
+    public Flight getFlightById(@Argument @Positive @NotNull @NotBlank Long id) {
         return flightService.getFlightById(id);
     }
 

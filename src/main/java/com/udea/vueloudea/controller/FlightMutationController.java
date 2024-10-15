@@ -12,8 +12,6 @@ import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Optional;
-
 @Controller
 public class FlightMutationController {
 
@@ -78,9 +76,8 @@ public class FlightMutationController {
                                @Argument @Positive Long statusId) {
 
         id = Long.valueOf(sanitize(id.toString()));
-        Optional<Flight> existingFlightOpt = flightService.getFlightById(id);
-        if (existingFlightOpt.isPresent()) {
-            Flight existingFlight = existingFlightOpt.get();
+        Flight existingFlight = flightService.getFlightById(id);
+        if (existingFlight != null) {
             if (flightNumber != null) existingFlight.setFlightNumber(sanitize(flightNumber));
             if (originIata != null) existingFlight.setOrigin(cityService.getCityByIataCode(sanitize(originIata)));
             if (destinationIata != null) existingFlight.setDestination(cityService.getCityByIataCode(sanitize(destinationIata)));

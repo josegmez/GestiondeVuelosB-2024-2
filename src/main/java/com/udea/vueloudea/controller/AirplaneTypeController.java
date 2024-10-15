@@ -29,4 +29,6 @@ public class AirplaneTypeController {
     private String sanitize(String input) {
         return input.replaceAll("[^a-zA-Z0-9]", "");
     }
+
+
 }
