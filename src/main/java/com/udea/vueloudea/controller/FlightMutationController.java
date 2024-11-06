@@ -99,7 +99,7 @@ public class FlightMutationController {
     }
 
     @MutationMapping
-    public boolean deleteFlight(@Argument @NotBlank @NotNull @Positive Long id) {
+    public boolean deleteFlight(@Argument @NotNull @Positive Long id) {
         flightService.deleteFlight(id);
         return true;
     }
