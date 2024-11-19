@@ -60,7 +60,7 @@ public class FlightMutationController {
     }
 
     @MutationMapping
-    public Flight updateFlight(@Argument @NotBlank @NotNull @Positive Long id,
+    public Flight updateFlight(@Argument @NotNull @Positive Long id,
                                @Argument String flightNumber,
                                @Argument String originIata,
                                @Argument String destinationIata,
